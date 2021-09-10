@@ -13,7 +13,7 @@ Lua-cURLv3/src:
 	fi
 
 Lua-cURLv3/lcurl.a: Lua-cURLv3/src
-	$(MAKE) -C Lua-cURLv3/ lcurl.a LUA_IMPL=5.3 LUA_VERSION=5.3 LUA_INC=/usr/include/lua5.3 CURL_LIBS="$(shell $(PKG_CONFIG) --libs --static libcurl)"
+	$(MAKE) -C Lua-cURLv3/ lcurl.a LUA_IMPL=5.3 LUA_VERSION=5.3 LUA_INC=/usr/include/lua5.3
 
 Lua-cURLv3/lcurl-linked.a: Lua-cURLv3/lcurl.a
 	./create-lcurl-linked.sh
