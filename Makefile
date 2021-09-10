@@ -1,6 +1,6 @@
 # This Makefile is supposed to be run outside of the docker container
 
-fennel-static-http: fennel src/Lua-cURLv3/src $(wildcard src/*.fnl) $(wildcard src/*.lua) $(wildcard src/**/*.fnl) $(wildcard src/**/*.lua)
+fennel-static-http: Dockerfile fennel src/Lua-cURLv3/src $(wildcard src/*.fnl) $(wildcard src/*.lua) $(wildcard src/**/*.fnl) $(wildcard src/**/*.lua)
 	docker build -t fennel-static-http .
 	docker run --rm --entrypoint cat fennel-static-http /usr/src/fennel-static-http/fennel-static-http > fennel-static-http
 	chmod +x fennel-static-http
