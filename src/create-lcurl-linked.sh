@@ -5,6 +5,9 @@ cd Lua-cURLv3
 ar -M <<EOM
 CREATE lcurl-linked.a
 ADDLIB /lib/libz.a
+ADDLIB /usr/lib/libbrotlicommon.a
+ADDLIB /usr/lib/libbrotlidec.a
+ADDLIB /usr/lib/libbrotlienc.a
 ADDLIB /usr/lib/libcrypto.a
 ADDLIB /usr/lib/libssl.a
 ADDLIB /usr/lib/libnghttp2.a

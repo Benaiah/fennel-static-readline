@@ -8,6 +8,9 @@ statically linked library out of the resulting file
 which it requires:
 
 - `/lib/libz.a` from `zlib-static`
+- `/usr/lib/libbrotlicommon.a` from `brotli-static`
+- `/usr/lib/libbrotlidec.a` from `brotli-static`
+- `/usr/lib/libbrotlienc.a` from `brotli-static`
 - `/usr/lib/libcrypto.a` from `openssl-libs-static`
 - `/usr/lib/libssl.a` from `openssl-libs-static`
 - `/usr/lib/libnghttp2.a` from `nghttp2-static`

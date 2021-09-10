@@ -11,6 +11,6 @@ RUN apk add make lua5.3 && \
 ENV LUA_PATH="?.lua;/usr/src/fennel/?.lua;/usr/src/fennel-static-http/?.lua;/usr/src/fennel-static-http/Lua-cURLv3/src/lua/?.lua"
 ENV FENNEL_PATH="?.fnl;/usr/src/fennel/?.fnl;/usr/src/fennel-static-http/?.fnl"
 
-RUN apk add gcc musl-dev lua5.3-dev curl-dev curl-static nghttp2-static openssl-libs-static zlib-static
+RUN apk add gcc musl-dev lua5.3-dev curl-dev curl-static nghttp2-static openssl-libs-static zlib-static brotli-static
 
 RUN cd /usr/src/fennel-static-http && make clean && make
