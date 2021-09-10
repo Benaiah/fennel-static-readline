@@ -4,10 +4,14 @@ fennel-static-http: fennel src/Lua-cURLv3/src $(wildcard src/*.fnl) $(wildcard s
 	docker build -t fennel-static-http .
 	docker run --rm --entrypoint cat fennel-static-http /usr/src/fennel-static-http/fennel-static-http > fennel-static-http
 	chmod +x fennel-static-http
+	mkdir -p sizes
+	du -h fennel-static-http > sizes/initial.txt
 	strip fennel-static-http
+	du -h fennel-static-http > sizes/stripped.txt
 
 fennel-static-http.gz: fennel-static-http
 	gzip -kf fennel-static-http
+	du -h fennel-static-http.gz > sizes/gzipped.txt
 
 fennel:
 	git submodule init

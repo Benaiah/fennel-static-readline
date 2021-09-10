@@ -37,10 +37,13 @@ To get a gzipped version of the binary, run `make fennel-static-http.gz`.
 
 # How big is it?
 
-All the following numbers are based on the results I got on my machine:
+All the following numbers are based on the results I got on my
+machine. These sizes will be output to the `sizes` directory each time
+the relevant make targets are built.
 
-- Before running `strip`, the binary is 18M.
-- After running `strip`, it shrinks to 3.3M.
-- After gzipping, it shrinks to 1.6M.
+- Before running `strip`, the binary is 17M. (see `sizes/initial.txt`)
+- After running `strip`, it shrinks to 3.3M. (see `sizes/stripped.txt`)
+- After gzipping, it shrinks to 1.7M. (see `sizes/gzipped.txt`)
+
 
 [Lua-cURLv3]: https://github.com/Lua-cURL/Lua-cURLv3
