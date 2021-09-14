@@ -1,11 +1,10 @@
 # `fennel-static-http`
 
 This repo is an example of how to create a statically linked binary
-that can make HTTPS requests. It uses an `alpine` docker image to
-build a static version of [Lua-cURLv3][Lua-cURLv3], then creates a
-statically linked library out of the resulting file
-(`src/Lua-cURLv3/lcurl.a`) as well as the following static libraries
-which it requires:
+that includes readline. It uses an `alpine` docker image to build a
+static version of , then creates a statically
+linked library out of the resulting file (`src/Lua-cURLv3/lcurl.a`) as
+well as the following static libraries which it requires:
 
 - `/lib/libz.a` from `zlib-static`
 - `/usr/lib/libbrotlicommon.a` from `brotli-static`

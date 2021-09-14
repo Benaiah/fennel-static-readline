@@ -1,16 +1,30 @@
-(include :cURL.impl.cURL)
-(local curl (require :cURL))
-(local view (require :fennelview))
+(local options {:plugins []})
 
-(fn request [url]
-  (let [out []
-        headers ["User-Agent: Fennel example"]]
-    (with-open [h (curl.easy {: url
-                              :httpheader headers
-                              :writefunction {:write #(table.insert out $2)}})]
-      (h:perform))
-    (table.concat out "\n")))
+(fn try-readline [ok readline]
+  (when ok
+    (when readline.set_readline_name
+      (readline.set_readline_name :fennel))
+    (readline.set_options {:keeplines 1000 :histfile ""})
 
-(match arg
-  [url] (print (request url))
-  _ (print (request "https://httpbin.org/get")))
+    (fn options.readChunk [parser-state]
+      (let [prompt (if (< 0 parser-state.stack-size) ".. " ">> ")
+            str (readline.readline prompt)]
+        (if str (.. str "\n"))))
+
+    (var completer nil)
+
+    (fn options.registerCompleter [repl-completer]
+      (set completer repl-completer))
+
+    (fn repl-completer [text from to]
+      (if completer
+          (do
+            (readline.set_completion_append_character "")
+            (completer (text:sub from to)))
+          []))
+
+    (readline.set_complete_function repl-completer)
+    readline))
+
+(let [readline (try-readline (pcall #(require :lua-readline)))]
+  ((. (require :fennel) :repl) options))

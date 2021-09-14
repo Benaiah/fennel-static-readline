@@ -1,28 +1,28 @@
 # This Makefile is supposed to be run outside of the docker container
 
-fennel-static-http: Dockerfile fennel src/Lua-cURLv3/src $(wildcard src/*.fnl) $(wildcard src/*.lua) $(wildcard src/**/*.fnl) $(wildcard src/**/*.lua)
-	docker build -t fennel-static-http .
-	docker run --rm --entrypoint cat fennel-static-http /usr/src/fennel-static-http/fennel-static-http > fennel-static-http
-	chmod +x fennel-static-http
+fennel-static-readline: Dockerfile fennel src/lua-readline $(wildcard src/*.fnl) $(wildcard src/*.lua) $(wildcard src/**/*.fnl) $(wildcard src/**/*.lua)
+	docker build -t fennel-static-readline .
+	docker run --rm --entrypoint cat fennel-static-readline /usr/src/fennel-static-readline/fennel-static-readline > fennel-static-readline
+	chmod +x fennel-static-readline
 	mkdir -p sizes
-	du -h fennel-static-http > sizes/initial.txt
-	strip fennel-static-http
-	du -h fennel-static-http > sizes/stripped.txt
+	du -h fennel-static-readline > sizes/initial.txt
+	strip fennel-static-readline
+	du -h fennel-static-readline > sizes/stripped.txt
 
-fennel-static-http.gz: fennel-static-http
-	gzip -kf fennel-static-http
-	du -h fennel-static-http.gz > sizes/gzipped.txt
+fennel-static-readline.gz: fennel-static-readline
+	gzip -kf fennel-static-readline
+	du -h fennel-static-readline.gz > sizes/gzipped.txt
 
 fennel:
 	git submodule init
 	git submodule update
 
-src/Lua-cURLv3/src:
-	git submodule init
-	git submodule update
+src/lua-readline:
+	rm -rf src/lua-readline && curl https://pjb.com.au/comp/lua/readline-3.0.tar.gz | tar xz && mv -f readline-3.0 src/lua-readline
 
 clean:
-	rm -f fennel-static-http{,.gz}
+	rm -rf src/lua-readline
+	rm -f fennel-static-readline{,.gz}
 	$(MAKE) -C src clean
 	$(MAKE) -C fennel clean
 
