@@ -21,9 +21,11 @@ src/lua-readline:
 	rm -rf src/lua-readline && curl https://pjb.com.au/comp/lua/readline-3.0.tar.gz | tar xz && mv -f readline-3.0 src/lua-readline
 
 clean:
-	rm -rf src/lua-readline
 	rm -f fennel-static-readline{,.gz}
 	$(MAKE) -C src clean
-	$(MAKE) -C fennel clean
+	$(MAKE) -C src/fennel clean
+
+clean-all: clean
+	rm -rf src/lua-readline
 
 .PHONY: clean
