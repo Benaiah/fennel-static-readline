@@ -1,3 +1,4 @@
 fennel-static-readline
 fennel-static-readline.gz
 sizes
+src/lua-readline
